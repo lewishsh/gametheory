@@ -1,0 +1,170 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1.25in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\newcommand{\ms}{\mu^*}
+\title{Econ 471: Problem set 1}
+\author{Lewis Ho}
+\begin{document}
+\begin{flushleft}
+  Lewis Ho\\
+  Econ 471\\
+  Problem set 1
+\end{flushleft}
+\subsection*{Problem 1}
+\begin{enumerate}[label=(\alph*)]
+\item Let $X\to y$ denote $X$ approaching $y$ in that round of the algorithm.
+  The generation of $\mu_M$ proceeds as follows:
+  \begin{enumerate}[label=(\roman*)]
+  \item $A\to a,\ B\to d,\ C\to d,\ D\to a,\ E\to a$, generating the incomplete
+    matching: $\langle Aa, Bd\rangle$.
+  \item $C\to c,\ D\to d,\ E\to b$, getting $\langle Aa, Cc, Dd, Eb\rangle$.
+  \item $B\to b$, getting $\langle Aa, Bb, Cc, Dd\rangle$.
+  \item $E\to d$ and getting rejected---that's the last person on his list, no
+    changes occur and the algorithm terminates.
+  \end{enumerate}
+  Thus $\mu_M = \langle Aa, Bb, Cc, Dd, E\rangle$.
+  $\mu_W$ goes:
+  \begin{enumerate}[label=(\roman*)]
+  \item $a\to B,\ b\to C,\ c\to E,\ d\to A$, getting $\langle Ad,Ba,Cb\rangle$.
+  \item $c\to D$, getting $\langle Ad, Ba, Cb, Dc$, and thus all the women are
+    matched.
+  \end{enumerate}
+  Hence $\mu_W = \langle Ad, Ba, Cb, Dc, E\rangle$.
+\item The procedure proceeds:
+  \begin{enumerate}[label=(\roman*)]
+  \item $A\to a,\ B\to d,\ C\to d,\ D\to a,\ E\to a$, generating the incomplete
+    matching: $\langle Bd, Da\rangle$.
+  \item $A\to b, C\to c,\ E\to b$, getting $\langle Ab, Bd, Cc, Da\rangle$.
+  \item $E\to d$, getting $\langle Ab, Cc, Da, Ed\rangle$.
+  \item $B\to c$, getting $\langle Ab, Bc, Da, Ed\rangle$.
+  \item $C\to a$, getting $\langle Ab, Bc, Ca, Ed\rangle$.
+  \item $D\to d$, getting $\langle Ab, Bc, Ca, Dd\rangle$.
+  \item E has no more people on his list so the procedure terminates.
+  \end{enumerate}
+  The matching is thus $\langle Ab, Bc, Ca, Dd, E\rangle$, which is preferable
+  for $a$ as she prefers $B$ to $A$.
+\end{enumerate}
+
+\subsection*{Problem 2}
+\begin{enumerate}[label=(\alph*)]
+\item As proved in class, the MPP and WPP yield the ``boy-best'' and
+  ``girl-best'' matchings respectively. The MPP goes: (I've switched the order
+  of men and women in the matching for convenience)
+  \begin{enumerate}[label=(\roman*)]
+  \item $U\to a,\ V\to b,\ W\to d,\ X\to c,\ Y\to a,\ Z\to d$, yielding $\langle
+    aY, bV, cX, dZ\rangle$.
+  \item $U\to b,\ W\to c$, yielding $\langle aY, bU, cW, dZ\rangle$.
+  \item $V\to d,\ X\to b$, yielding $\langle aY, bU, cW, dZ\rangle$.
+  \item $V\to a,\ X\to a$, yielding $\langle aV, bU, cW, dZ\rangle$.
+  \item $X\to d,\ Y\to b$, yielding $\langle aV, bU, cW, dZ\rangle$.
+  \item $Y\to c$, yielding $\langle aV, bU, cY, dZ\rangle$.
+  \item $W\to b$, yielding $\langle aV, bW, cY, dZ\rangle$.
+  \item $U\to c$, yielding $\langle aV, bW, cY, dZ\rangle$.
+  \item $U\to d$, yielding $\langle aV, bW, cY, dZ\rangle$
+  \end{enumerate}
+  Thus our final matching is $\langle aV, bW, cY, dZ, X, U\rangle$. For the WPP:
+  \begin{enumerate}[label=(\roman*)]
+  \item $a\to V,\ b\to W,\ c\to V,\ d\to Z$ gives $\langle aV, bW, dZ\rangle$.
+  \item $c\to Z$ gives $\langle aV, bW, dZ\rangle$.
+  \item $c\to Y$ gives $\langle aV, bW, cY, dZ\rangle$, and as every woman is
+    matched, the procedure finishes.
+  \end{enumerate}
+  Thus the final ``girl-best'' matching is $\langle aV, bW, cY, dZ, U, X\rangle$
+  , which is the same as the ``boy-best'' one.
+\item Using the same process:
+  \begin{enumerate}[label=(\roman*)]
+  \item The first stage gives: $\langle Xabc, Yeg, Zhik\rangle$.
+  \item $d\to X,\ f\to Z,\ j\to Y\rangle$, thus $\rangle Xabcd, Yeg, Zhik\rangle$.
+  \item $f\to X, j\to X$, thus $\langle Xacdf, Yeg, Zhik\rangle$.
+  \item $b\to Y$, thus $\langle Xacdf, Yeg, Zhik\rangle$.
+  \item $b\to Z$, thus $\langle Xacdf, Yeg, Zhik\rangle$, and the algorithm
+    terminates.
+  \end{enumerate}
+  Thus the final matching is $\langle Xacdf, Yeg, Zhik, b, j\rangle$.
+
+\end{enumerate}
+
+\subsection*{Problem 3}
+
+\begin{enumerate}[label=(\alph*)]
+\item Suppose not: there exist $A$ and $B$, both pointing at $x$. $x$ either
+  prefers $A$ or $B$ (say $A$), but then the matching in which $Bx$
+  supposedly exists is unstable, as in that one $x$ prefers $A$ and $A$ prefers
+  $x$ (as by assumption, $A$ prefers $x$ of the two wives from the two matchings).
+\item Let $\mu^*$ be the matching in (a), and $A$ be a man in the profile.
+  Any woman $x$ who prefers $A$ to her current husband is matched to that
+  husband in a stable matching, and in that matching $A$ prefers his wife to her,
+  else it wouldn't be stable. $A$'s current wife is his preferred one out of
+  the two he's matched with in $\mu$ and $\tilde{\mu}$, so is preferred over
+  $x$. Thus no man is preferred by a woman he doesn't prefer, and $\ms$ is
+  stable.
+\item Suppose not: suppose in $\ms$ some woman $x$ is matched with a husband
+  she prefers out of the two; in other words, let's say $\ms$ contains the
+  couple $Ax$, $A$ preferring $x$ to the other woman $y$ out of the two
+  matchings (by the definition of $\ms$),
+  and $x$ preferring $A$ over $B$, the other husband out of the two
+  matchings. Then in the matching in which
+  $A$ and $x$ aren't matched, they both prefer each other to their husband/wife,
+  which violates our assumption that it's a stable matching.
+\end{enumerate}
+
+\subsection*{Problem 4}
+
+Lemma: Problem 3 implies the uniqueness of men- and women-optimal matchings.
+Suppose not, and let $\mu_1$ and $\mu_2$ be men-optimal matchings. Then by the
+process in 3a, a new matching can be generated that is better than both for
+men---each man being paired with the preferred wife out of the two. If the final
+matching is the same as $\mu_1$ or $\mu_2$, it means that one is superior to the
+other, violating our assumption. The same argument can be made for women-optimal
+matchings.
+
+Proof of statement: suppose not, that there exists some $\mu_2$ differing from
+our men- and women-optimal matching $\mu_1$; that means there exists some
+matching in $\mu_1$, say $Aa$, that is not in $\mu_2$. Who are $A$ and $a$
+matched to in $\mu_2$? By the optimality of $\mu_1$, they must both be matched
+to worse people, otherwise $\mu_1$ isn't uniquely optimal for men or women (at
+least one of them would be matched with a preferred person and be better off).
+But then $\mu_2$ is unstable, as $A$ and $a$ prefer each other to their
+spouses. Thus $\mu_1$ is unique. 
+
+\subsection*{Problem 5}
+\begin{enumerate}[label=(\alph*)]
+\item
+  \begin{enumerate}[label=(\roman*)]
+  \item The cycles for this procedure are $(CFG)$, $(A)$, $(BE)$, $(DH)$,
+    in each step, giving
+    us the allocation \[\langle Aa, Be, Cf, Dh, Eb, Fg, Gc, Hd\rangle.\]
+  \item  The cycles are $(C)$, $(E)$, $(F)$, $(D)$, $(AB)$, (again, one in each
+    step), and the final
+    allocation is \[\langle Ab, Ba, Cc, Dd, Ee, Ff\rangle.\]
+  \end{enumerate}
+\item We want to show that no coalition can block $a'$ on earth.
+  $A$ and $C$ get their top choices, so they won't be part of any coalitions,
+  as on earth participants join coalitions only if they're better off through
+  them. Thus the only remaining possible coalition is $\{B,D\}$, which gives
+  allocations $\langle Bb, Dd\rangle$ or $\langle Bd, Db\rangle$. But both
+  are better off in $a'$, so these coalitions also don't form. Thus $a'$ is in
+  the core.
+\item Clearly $A$ and $C$ are just as well off, and $B$ and $D$ prefer $c$ and
+  $a$ better than $a$ and $c$ respectively, so $a'$ is weakly dominated by the
+  allocation giving traders their first choice.
+\item TTC gives the cycles $(A),\ (C),\ (BD)$ in the first step, and terminates.
+  As proved in class, the resultant allocation, $\langle Ab, Bc, Cd, Da\rangle$
+  is the only strictly stable solution and thus the only solution in the core.
+
+  The core consists of all allocations that wouldn't be blocked by earth given
+  $a'$ as a starting allocation; i.e. it's an allocation in which there is no
+  coalition which in $a'$ is strictly better off or in which a cycle through
+  the coalition starting from $a'$ leaves them strictly better off. Note,
+  however, that because $A$ and $C$ have their ideal houses, the only
+  allocation that weakly dominates $a'$ is that given by the TTC
+  ($B$ and $D$ can only swap houses, if they are not to make $A$ or $C$ worse
+  off). Finally, $a'$ itself isn't in the core, as $B$ and $D$ are better by
+  swapping. Thus our core also consists of only the TTC allocation.
+
+\end{enumerate}
+
+
+\end{document}

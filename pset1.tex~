@@ -1,0 +1,53 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1.25in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\begin{document}
+\begin{flushleft}
+  Lewis Ho\\
+  Econ 471\\
+  Problem set 1
+\end{flushleft}
+\subsection*{Problem 1}
+\begin{enumerate}[label=(\alph*)]
+\item Let $X\to y$ denote $X$ approaching $y$ in that round of the algorithm.
+  The generation of $\mu_M$ proceeds as follows:
+  \begin{enumerate}[label=(\roman*)]
+  \item $A\to a,\ B\to d,\ C\to d,\ D\to a,\ E\to a$, generating the incomplete
+    matching: $\langle Aa, Bd\rangle$.
+  \item $C\to c,\ D\to d,\ E\to b$, getting $\langle Aa, Cc, Dd, Eb\rangle$.
+  \item $B\to b$, getting $\langle Aa, Bb, Cc, Dd\rangle$.
+  \item $E\to d$ and getting rejected---that's the last person on his list, no
+    changes occur and the algorithm terminates.
+  \end{enumerate}
+  Thus $\mu_M = \langle Aa, Bb, Cc, Dd, E\rangle$.
+  $\mu_W$ goes:
+  \begin{enumerate}[label=(\roman*)]
+  \item $a\to B,\ b\to C,\ c\to E,\ d\to A$, getting $\langle Ad,Ba,Cb\rangle$.
+  \item $c\to D$, getting $\langle Ad, Ba, Cb, Dc$, and thus all the women are
+    matched.
+  \end{enumerate}
+  Hence $\mu_W = \langle Ad, Ba, Cb, Dc, E\rangle$.
+\item The procedure proceeds:
+  \begin{enumerate}[label=(\roman*)]
+  \item $A\to a,\ B\to d,\ C\to d,\ D\to a,\ E\to a$, generating the incomplete
+    matching: $\langle Bd, Da\rangle$.
+  \item $A\to b, C\to c,\ E\to b$, getting $\langle Ab, Bd, Cc, Da\rangle$.
+  \item $E\to d$, getting $\langle Ab, Cc, Da, Ed\rangle$.
+  \item $B\to c$, getting $\langle Ab, Bc, Da, Ed\rangle$.
+  \item $C\to a$, getting $\langle Ab, Bc, Ca, Ed\rangle$.
+  \item $D\to d$, getting $\langle Ab, Bc, Ca, Dd\rangle$.
+  \item E has no more people on his list so the procedure terminates.
+  \end{enumerate}
+  The matching is thus $\langle Ab, Bc, Ca, Dd, E\rangle$, which is preferable
+  for $a$ as she prefers $B$ to $A$.
+\end{enumerate}
+
+\subsection*{Problem 2}
+\begin{enumerate}[label=(\alph*)]
+\item As proved in class, the MPP and WPP yield the ``boy-best'' and
+  ``girl-best'' matchings respectively.
+\end{enumerate}
+
+\end{document}
