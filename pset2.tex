@@ -1,0 +1,128 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1.25in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{microtype}
+\begin{document}
+\begin{center}
+  Lewis Ho\\
+  Cooperative Game Theory\\
+  Problem Set 2
+\end{center}
+
+\paragraph{Problem 1}
+\begin{enumerate}[label=\alph*)]
+\item The core is the set of points in $\mathbb{R}^3$ satisfying:
+  \begin{align*}
+    x_1 + x_2 + x_3 &= 1\\
+    x_1 \leq \frac{1}{3},\ 
+    x_2 &\leq \frac{1}{3},\ 
+    x_3 \leq \frac{1}{2}
+  \end{align*}
+The shapley values are:
+\begin{align*}
+  x^*_1 &= \frac{1}{6}(0 + 0 + \frac{1}{2} + \frac{2}{3} + \frac{1}{3} + \frac{1}
+          {3}) = 0.30\bar{5}\\
+  x^*_2 &= \frac{1}{6}(0 + 0 + \frac{1}{2} + \frac{2}{3} + \frac{1}{3} + \frac{1}
+          {3}) = 0.30\bar{5}\\
+  x^*_3 &= \frac{1}{6}(0 + 0 + \frac{2}{3} + \frac{2}{3} + \frac{1}{2} + \frac{1}
+          {2}) = 0.3\bar{8}
+\end{align*}
+\item The other values keep the following conditions the same:
+  \begin{align*}
+    x_1 + x_2 + x_3 &= 1\\
+    x_1 \leq \frac{1}{3},\ 
+    x_2 &\leq \frac{1}{3}
+  \end{align*}
+  $x$ gives us a upper bound on what we can offer 3. Clearly the most we can
+  offer them, given our other upper bounds, is 1/3. Therefore if $x \geq 2/3$,
+  the core will be nonempty.
+\end{enumerate}
+
+\paragraph{Problem 2}
+Because this game is symmetric, our requirement for $y$ is that $y/3 \geq
+(3/4)/2$. Thus $y \geq 9/8$ produces a nonempty core.
+
+\paragraph{Problem 3}
+Core $v = \{x\in \mathbb{R}^n_+\ :\ \sum_{i\in T(v)}x_i = 1\}$ is equivalent to
+saying $x_i = 0$ for all $v\notin T(v)$, and that all combinations that satisfy
+this are in the core. To show this condition is necessary, suppose it is false,
+i.e we have an allocation where some $x_i \neq 0$ where $i\notin T(v)$. Because
+$i$ is not in $T(v)$, there exists some coalition $S$ where $v(S) = 1$. This
+coalition can block the allocation: we take $i$'s share, and the share of
+anyone else not in $T(V)$, and distribute it amongst $S$. The share of $v(S)$
+adds to one so it's feasible, and everyone is better than off in the new
+allocation. I.e. $x_i = 0$ for all $i \notin T(v)$ is a necessary condition.
+
+To show sufficiency, suppose we have an allocation where only those in $T(v)$
+have nonzero payoffs. Because of this fact, any blocking coalition must
+contain everyone with nonzero payoff, but in this case the coalition cannot
+distribute the payoff in a way that is better for everyone in the coalition:
+for someone to be better off, we must take away from someone with a nonzero
+payoff in the original allocation, but all such people are also in the coalition,
+so no such superior allocations exist for the coalition, and original allocation
+is stable.
+
+\paragraph{Problem 4}
+I will assume this means that any coalition without the landlord produces 0
+units of food.
+
+For the landlord, note that we can account for all $S$ without the landlord by
+counting all $S$ of different sizes, as all workers are the same. For each $s$,
+there are 10 choose $s$ coalitions of that size, and $s$ ranges from 1 to 10
+(we leave out zero because $f(0) = 0$).
+Finally, note that $v(S\cup L) - v(S) = f(s)$, where $L$ is the landlord, as
+the workers by themselves produce nothing. Thus the Shapley value for $L$ is:
+\begin{displaymath}
+  \sum_{s=1}^{10}\binom{10}{s}\frac{s!(11-s-1)!}{11!}f(s)
+  = \sum_{s=1}^{10}\frac{10!}{s!(10-s)!}\frac{s!(10-s)!}{11!}f(s)
+  = \sum_{s=1}^{10}\frac{f(s)}{11}.
+\end{displaymath}
+
+The other Shapley values can be calculated by efficiency and symmetry. If
+$\phi_L(v)$ is the Shapley value for the landlord calculated above, then
+$\phi_i(v)$ where $i \neq L$ is $(f(10)-\phi_1(v))/10$.
+
+%Next, for the Shapley value for a worker, note that we need not count $S$ not
+%including the landlord, because $f(S) = f(S \cup i) = 0$. Note further that all
+%$S$ including the landlord can be characterized by its size $s$, and for each
+%$s$ there are 9 choose $s-1$ of them (ways of choosing $s-1$ workers out of the
+%9 who are not $i$). Finally, note that $v(S) = f(s-1)$ and $v(S\cup i) = f(s)$,
+%again because each has $s-1$ and $s$ workers respectively. Thus the Shapley
+%value is:
+%\begin{align*}
+%  &\sum_{s=1}^{10}\binom{9}{s-1}\frac{s!(11 - s - 1)}{11!}(f(s)-f(s-1))\\
+%  = &\sum_{s=1}^{10}\frac{9!}{(s-1)!(10-s)!}\frac{s!(10-s)!}{11!}(f(s)-f(s-1))\\
+%  = &\sum_{s=1}^{10}\frac{s}{110}(f(s)-f(s-1)),
+%\end{align*}
+%where we define $f(0) = 0$.
+
+\paragraph{Problem 5}
+In the first game, a coalition wins a majority if and only if it contains the
+first player. Thus for $i=1$, $v(S\cup i)- v(S) = 1$, and $= 0$ for all others.
+Thus the Shapley value $\phi_i(v) = 1$ for $i=1$, and $0$ otherwise.
+For the second, let's consider $\phi_1(v)$ first. Of all the different ways of
+ordering 1, 2, 3, 4 and 5, there are 24 orderings in which $v(S\cup i) - v(S) =
+0$, namely those in which 1 comes last. It is equal to 1 in all other cases,
+and thus the Shapley value is:
+\begin{displaymath}
+  \phi_1(v) = \frac{5!-24}{5!} = 0.8
+\end{displaymath}
+Then, by efficiency and symmetry, $\phi_i = 0.05$ for $i = 2,\ 3,\ 4,\ 5$.
+
+\paragraph{Problem 6}
+For permanent members, the coalitions $S$ for which $v(S\cup i) - v(S) = 1$
+are those including all other permanent members and at least 4 non-permanent
+members, say $k$ of them (this value is 0 for all other coalitions).
+For any $k$, there are 4 choose 4 times 10 choose $k$
+coalitions $S$ of that specification. Thus the Shapley value for a security
+council member is:
+\begin{displaymath}
+  \sum_{k=4}^{10}\binom{10}{k}\frac{(4+k)!(15-(4+k)-1)!}{15!},
+\end{displaymath}
+which, with a little help from python, evaluates to 0.196. Then, using symmetry
+and efficiency, we infer that the Shapley value for non-permanent members is
+$(1-5\cdot0.195)/10 = 0.00186$.
+
+\end{document}

@@ -1,0 +1,50 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1.25in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{microtype}
+\begin{document}
+\begin{center}
+  Lewis Ho\\
+  Game Theory\\
+  Problem Set 2
+\end{center}
+
+\paragraph{Problem 1}
+\begin{enumerate}[label=\alph*)]
+\item The core is the set of points in $\mathbb{R}^3$ satisfying:
+  \begin{align*}
+    x_1 + x_2 + x_3 &= 1\\
+    x_1 \leq \frac{1}{3},\ 
+    x_2 &\leq \frac{1}{3},\ 
+    x_3 \leq \frac{1}{2}
+  \end{align*}
+The shapley values are:
+\begin{align*}
+  x^*_1 &= \frac{1}{6}(0 + 0 + \frac{1}{2} + \frac{2}{3} + \frac{1}{3} + \frac{1}
+          {3}) = 0.30\bar{5}\\
+  x^*_2 &= \frac{1}{6}(0 + 0 + \frac{1}{2} + \frac{2}{3} + \frac{1}{3} + \frac{1}
+          {3}) = 0.30\bar{5}\\
+  x^*_3 &= \frac{1}{6}(0 + 0 + \frac{2}{3} + \frac{2}{3} + \frac{1}{2} + \frac{1}
+          {2}) = 0.3\bar{8}
+\end{align*}
+\item The other values keep the following conditions the same:
+  \begin{align*}
+    x_1 + x_2 + x_3 &= 1\\
+    x_1 \leq \frac{1}{3},\ 
+    x_2 &\leq \frac{1}{3}
+  \end{align*}
+  $x$ gives us a upper bound on what we can offer 3. Clearly the most we can
+  offer them, given our other upper bounds, is 1/3. Therefore if $x \geq 2/3$,
+  the core will be nonempty.
+\end{enumerate}
+
+\paragraph{Problem 2}
+Because this game is symmetric, our requirement for $y$ is that $y/3 \geq
+(3/4)/2$. Thus $y \geq 9/8$ produces a nonempty core.
+
+\paragraph{Problem 3}
+By the definition of $T(v)$, any group $S$ has nonzero worth only if it contains
+the entirety of $T(v)$.
+\end{document}
