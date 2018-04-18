@@ -36,7 +36,7 @@ The shapley values are:
     x_2 &\leq \frac{1}{3}
   \end{align*}
   $x$ gives us a upper bound on what we can offer 3. Clearly the most we can
-  offer them, given our other upper bounds, is 1/3. Therefore if $x \geq 2/3$,
+  offer them, given our other upper bounds, is 1/3. Therefore if $x \leq 2/3$,
   the core will be nonempty.
 \end{enumerate}
 
@@ -82,7 +82,7 @@ the workers by themselves produce nothing. Thus the Shapley value for $L$ is:
 
 The other Shapley values can be calculated by efficiency and symmetry. If
 $\phi_L(v)$ is the Shapley value for the landlord calculated above, then
-$\phi_i(v)$ where $i \neq L$ is $(f(10)-\phi_1(v))/10$.
+$\phi_i(v)$ where $i \neq L$ is $(f(10)-\phi_L(v))/10$.
 
 %Next, for the Shapley value for a worker, note that we need not count $S$ not
 %including the landlord, because $f(S) = f(S \cup i) = 0$. Note further that all

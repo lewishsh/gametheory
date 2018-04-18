@@ -1,0 +1,25 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1.25in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{microtype}
+\begin{document}
+\begin{center}
+  Lewis Ho\\
+  Cooperative Game Theory\\
+  Problem Set 2
+\end{center}
+
+\paragraph{Problem 1}
+\begin{enumerate}[label=*\alph)]
+\item The zero sum game for this negotiation is
+  \begin{pmatrix}
+    1 & 4\\
+    0 & -3\\
+  \end{pmatrix}
+
+\end{enumerate}
+
+
+\end{document}
