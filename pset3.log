@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2018.3.10)  17 APR 2018 23:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2018.3.10)  19 APR 2018 21:37
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -230,11 +230,11 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] (./pset3.aux) ) 
 Here is how much of TeX's memory you used:
- 3498 strings out of 492982
- 52214 string characters out of 6138579
+ 3500 strings out of 492982
+ 52230 string characters out of 6138579
  155544 words of memory out of 5000000
  7050 multiletter control sequences out of 15000+600000
- 8837 words of font info for 38 fonts, out of 8000000 for 9000
+ 8886 words of font info for 39 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  31i,8n,38p,228b,206s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/s
@@ -243,7 +243,7 @@ t/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/
 public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 >
-Output written on pset3.pdf (2 pages, 55250 bytes).
+Output written on pset3.pdf (2 pages, 55143 bytes).
 PDF statistics:
  31 PDF objects out of 1000 (max. 8388607)
  21 compressed objects within 1 object stream
