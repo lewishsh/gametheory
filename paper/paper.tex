@@ -1,0 +1,234 @@
+\documentclass[12pt]{article}
+%\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{amsmath}
+\usepackage{amssymb}
+%\doublespacing
+
+\title{Dissolving a Partnership}
+\author{Lewis Ho}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{Introduction}
+
+John Harsanyi, in the 1959 paper ``A bargaining model for the cooperative n-person
+game,'' proposed a procedure for dissolving a partnership in which the overall
+value of the partnership is more than the sum of what they each contributed to it.
+Given that each partner may have brought something of a different worth to the
+table, and different groups within the partnership may also have made their own
+collective contributions, the question of how the overall assets are to be
+distributed to each is a complicated one.
+
+Harsanyi's approach rests on the intuition that each partner, or subgroup,
+should recoup what they contributed, and what remains should be distributed
+evenly to all. His procedure, however, appears to be a fairly inexact
+implementation of this idea: coalitions are chosen at random, their contributions
+are distributed evenly and subtracted from the remaining assets to be distributed,
+and this process continues until there is nothing left. 
+
+There is, in fact, intention behind this apparently haphazard approach: in fact
+the procedure works no matter how one decides to pick coalitions, and the outcome
+always coincides exactly with the ideal put forward, known in game theory as
+the Shapley value of the game.
+In this paper I describe and demonstrate the procedure and prove
+that the outcome coincides with the Shapley value of the partnership.
+
+\subsection*{The Procedure}
+
+I formalize the notion of a partnership and its contributors as follows: let
+$N = \{1,2,\ldots, n\}$ be partners, and let $v(S)$ with $S \subseteq N$ be
+the worth or contribution of all members of $S$ collectively. This means, for
+example, that $v(1,2)$ is the sum of all the contributions of $1$ and 2 as
+individuals, and of their contribution as a pair. Thus $v(N)$ is the total
+worth of the partnership being dissolved, and is the amount that must be divided
+amongst the partners.
+Note that it is
+possible for the contributions of a collective to be negative, or less than
+the sum of its parts, because the collective may have made a poor decision,
+so both $v(A) + v(B) \leq v(A\cup B)$ and $v(A) + v(B) \geq v(A\cup C)$ are
+possible. Finally, note that $v$ is a vector in $\mathbb{R}^{P(N)}$, where
+$P(N)$ is the power set of $N$ (we exclude the null set from $P(N)$ for
+convenience here), and that other ``games,'' i.e. other situations, can be
+obtained for the same set of partners with other vectors $v'\in \mathbb{R}^{P(N)}$.
+
+The procedure works as follows: any coalition $S\subset N$ is chosen, $v(S)$
+is divided equally among the members of $S$, and $v(S)$ is subtracted from all
+components of $v$ containing $S$ to yield some $v_2$.\footnote{As in $v_2(R) =
+  v(R)-v(S)$ if $S \subseteq R$, and $v(R)$ otherwise.} This procedure repeats,
+with $v_2, v_3\ldots v_k$ replacing $v$ and coalitions $S$ with $v_i(S)\neq 0$
+selected until some $v_k = 0$ is reached.
+
+\paragraph{Example}
+I dissolve the partnership represented by:
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|l|l|l|l|l|}
+\hline
+S    & 1  & 2  & 3 & 1,2 & 1,3 & 2,3 & 1,2,3 \\ \hline
+v(S) & 30 & 12 & 6 & 36  & 36  & 30  & 90    \\ \hline
+\end{tabular}
+\end{table}
+
+I use the same notation as in the reading: on the left I indicate the chosen
+coalition (``claimant'') leading to the game on that line (this is a slight
+deviation from the reading, but I think it makes more intuitive sense), in
+the middle the value of each successive game,
+and on the right how much each partner gets from each distribution.
+\begin{table}[h]
+  \scriptsize
+\centering
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|}
+\hline
+Claimant & $v_i(1)$ & $v_i(2)$ & $v_i(3)$ & $v_i(1,2)$ & $v_i(1,3)$ & $v_i(2,3)$ & $v_i(1,2,3)$ & 1  & 2  & 3  \\ \hline
+         & 30      & 12      & 6       & 36        & 36        & 30        & 90          &    &    &    \\ \hline
+1        & 0       & 12      & 6       & 6         & 6         & 30        & 60          & 30 & 0  & 0  \\ \hline
+2        & 0       & 0       & 6       & -6        & 6         & 18        & 48          & 0  & 12 & 0  \\ \hline
+3        & 0       & 0       & 0       & -6        & 0         & 12        & 42          & 0  & 0  & 6  \\ \hline
+2,3      & 0       & 0       & 0       & -6        & 0         & 0         & 30          & 0  & 6  & 6  \\ \hline
+1,2      & 0       & 0       & 0       & 0         & 0         & 0         & 36          & -3 & -3 & 0  \\ \hline
+1,2,3    & 0       & 0       & 0       & 0         & 0         & 0         & 0           & 12 & 12 & 12 \\ \hline
+Total    &         &         &         &           &           &           &             & 39 & 27 & 24 \\ \hline
+\end{tabular}
+\end{table}
+\pagebreak
+
+And with a different order of coalitions chosen:
+\begin{table}[h]
+  \scriptsize
+\centering
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|}
+\hline
+Claimant & v\_i(1) & v\_i(2) & v\_i(3) & v\_i(1,2) & v\_i(1,3) & v\_i(2,3) & v\_i(1,2,3) & 1  & 2  & 3  \\ \hline
+         & 30      & 12      & 6       & 36        & 36        & 30        & 90          &    &    &    \\ \hline
+2        & 30      & 0       & 6       & 24        & 36        & 18        & 78          & 0  & 12 & 0  \\ \hline
+3        & 30      & 0       & 0       & 24        & 30        & 18        & 72          & 0  & 0  & 6  \\ \hline
+1        & 0       & 0       & 0       & 6         & 0         & 12        & 42          & 30 & 0  & 0  \\ \hline
+1,2      & 0       & 0       & 0       & 0         & 0         & 12        & 48          & -3 & -3 & 0  \\ \hline
+2,3      & 0       & 0       & 0       & 0         & 0         & 0         & 36          & 0  & 6  & 6  \\ \hline
+1,2,3    & 0       & 0       & 0       & 0         & 0         & 0         & 0           & 12 & 12 & 12 \\ \hline
+Total    &         &         &         &           &           &           &             & 39 & 27 & 24 \\ \hline
+\end{tabular}
+\end{table}
+
+I proceed to prove two propositions about the procedure.
+
+\subsection*{Termination}
+
+I first show that the procedure terminates regardless of which coalitions are
+chosen at each step. The proof proceeds by contradiction. Suppose the statement
+is false,
+then there exists an infinite sequence of coalitions $\{S_n\}_{n=1}^\infty$ such
+that $v_{n}(S_n)\neq 0$, with (for convenience we let $v_1 = v$, the original
+game)---as the procedure terminates when no coalition with nonzero value exists.
+
+As $|P(N)|$ is finite, there must be coalitions appearing infinitely many times
+in $\{S_n\}$, and there must be a smallest (though not necessarily strictly
+smallest) coalition appearing infinitely many times. Note then two facts:
+\begin{enumerate}
+\item During some round $i$ of a procedure, for all $S \subseteq N$ with $|S|
+  \leq |S_i|$ and $S \neq S_i$, $v_{i+1}(S) = v_i(S)$,
+  where $S_i$ is the chosen coalition for that
+  round. This is because given those conditions $S_i \not\subseteq S$, thus
+  $v_{i+1}(S) = v_i(S)$ by the definition of $v_{i+1}$.
+\item If $S_i$ is the chosen coalition in round $i$, $v_{i+1}(S_i) = 0$.
+\end{enumerate}
+Thus if $S$ is the smallest coalition that repeats infinitely, then there is some
+point in $\{S_n\}$ in which all the coalitions subsequently chosen are either the
+same size or greater than $S$. Thus the next time $S$ is chosen, say in turn
+$i$, $v_{i+1}(S) = 0$, and because each subsequent $S_k$ is of equal size or
+larger than $S$, $v_k(S)$ remains as 0 for all $k > i$, and thus cannot be chosen
+again, contradicting the assumption that $S$ repeats infinitely. Thus our
+assumption cannot be true, i.e. our procedure must always terminate.
+
+\subsection*{Uniqueness and the Shapley Value}
+
+
+Another useful concept for considering the distribution of value across a
+collective is the Shapley value, a quantity that allocates amongst members of a
+group each individual/coalition's contribution and then divides the remainder
+evenly. This is the ideal distribution that realizes Harsanyi's intuition.
+In fact, I show in this section that the outcome of the
+procedure is the same regardless of which coalition is chosen at any stage,
+and that the outcome is always the Shapley value.
+
+\paragraph{Example}
+
+To first demonstrate this correspondence, I shall calculate the Shapley value
+for each partner in the example given above.
+
+For partner 1:
+\begin{align*}
+  \phi_1(v)
+  & = \sum_{S\subseteq N\setminus \{1\}}\frac{|S|!(3-|S|-1)!}{3!}(v(S\cup \{1\})-
+    v(S))\\
+  & = \frac{2\cdot 30}{6} + \frac{36-12}{6} + \frac{36-6}{6} +
+    \frac{2(90-30)}{6} = 39.
+\end{align*}
+
+For partner 2:
+\begin{align*}
+  \phi_1(v)
+  & = \sum_{S\subseteq N\setminus \{2\}}\frac{|S|!(3-|S|-1)!}{3!}(v(S\cup \{2\})-
+    v(S))\\
+  & = \frac{2\cdot 12}{6} + \frac{36-30}{6} + \frac{30-6}{6} + \frac{2(90-36)}
+    {6} = 27.
+\end{align*}
+
+And finally because $\sum_i\phi_i(v) = v(N)$, $\phi_3(v) = 24$, which is what we
+got from the procedure above.
+
+\paragraph{Proof}
+I now show that the procedure always gives each partner their Shapley value.
+Let $u_S\in \mathbb{R}^{P(N)}$ be a vector/game with components $(u_S)_T = 1$ if
+$S \subseteq T$ and 0 otherwise. Note that at each step $i$, we generate our
+new game $v_{i+1}$ by subtracting $u_{S_i}\cdot v_i(S_i)$ from $v_{i}$.
+With this we can express the games $\{v_i\}$
+resulting from each stage of the procedure recursively:
+\begin{align*}
+  v_2 &= v_1 - u_{S_1}\cdot v_1(S_1)\\
+  v_3 &= v_2 - u_{S_2}\cdot v_2(S_2) = v_1 - u_{S_1}\cdot v_1(S_1) - u_{S_2}\cdot
+        v_2(S_2)\\
+      & \vdots\\
+  v_k &= v_{k-1} - u_{S_{k-1}}\cdot v_{k-1}(S_{k-1}) = v_1 - \sum_{i=1}^{k-1}
+        u_{S_i}\cdot v_i(S_i).
+\end{align*}
+Because the procedure terminates after some turn $k-1$, we know the resultant
+game $v_k = 0$. Thus, rearranging our last equation, we get
+\begin{displaymath}
+  \sum_{i=1}^{k-1}u_{S_i}\cdot v_i(S_i) = v_1 = v.
+\end{displaymath}
+By the additivity of the Shapley value, we have:
+\begin{align}
+  \phi(v) = \phi\left(\sum_{i=1}^{k-1}u_{S_i}\cdot v_i(S_i)\right) =
+  \sum_{i=1}^{k-1}\phi(u_{S_i})\cdot v_i(S_i).
+\end{align}
+
+To complete the proof, I write the allocations from each round in a similar
+manner. In each turn $i$, if $S_i$ is the chosen coalition, each player $j$
+gets $v_i(S_i)/|S_i|$ if they are in $S_i$ and nothing otherwise. Note then that
+in the game $u_{S_i}$, all $j\notin S_i$ are dummies and the rest are symmetric,
+and thus $\phi(u_{S_i})_j = 1/|S_i|$ for $j\in S_i$ and zero otherwise. Putting
+the two together, the allocation for each player $j$ in round $i$ can be written
+as $\phi(u_{S_i})_j\cdot v_i(S_i)$. Over the course of the $k-1$ turns of the
+procedure, each player $j$ thus receives
+\begin{displaymath}
+  \sum_{i=1}^{k-1}\phi(u_{S_i})_j\cdot v_i(S_i) = \left(\sum_{i=1}^{k-1}\phi(u_{S_i})
+    \cdot v_i(S_i)\right)_j = \phi(v)_j
+\end{displaymath}
+by equation (1). In other words each player receives his Shapley value, thus
+completing the proof.
+
+\subsection*{Conclusion}
+
+The procedure for dissolving a partnership examined above appears to be a
+haphazard implementation of the idea that each individual/coalition should
+receive what they put in, and the surplus allocated evenly to those who have a
+claim to it. However, from the examination above it is clear that this seemingly
+random process is actually an exact implementation of that intuition in that
+it always terminates no matter how it is used, and it always delivers the desired
+outcome, namely the Shapley value of the partnership.
+
+\end{document}
