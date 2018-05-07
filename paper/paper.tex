@@ -1,8 +1,9 @@
 \documentclass[12pt]{article}
-%\usepackage[margin=1in]{geometry}
+\usepackage[margin=1in]{geometry}
 \usepackage{setspace}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{booktabs}
 %\doublespacing
 
 \title{Dissolving a Partnership}
@@ -29,10 +30,10 @@ implementation of this idea: coalitions are chosen at random, their contribution
 are distributed evenly and subtracted from the remaining assets to be distributed,
 and this process continues until there is nothing left. 
 
-There is, in fact, intention behind this apparently haphazard approach: in fact
+There is, in fact, intention behind this apparently haphazard approach: 
 the procedure works no matter how one decides to pick coalitions, and the outcome
 always coincides exactly with the ideal put forward, known in game theory as
-the Shapley value of the game.
+the Shapley value.
 In this paper I describe and demonstrate the procedure and prove
 that the outcome coincides with the Shapley value of the partnership.
 
@@ -61,55 +62,72 @@ components of $v$ containing $S$ to yield some $v_2$.\footnote{As in $v_2(R) =
 with $v_2, v_3\ldots v_k$ replacing $v$ and coalitions $S$ with $v_i(S)\neq 0$
 selected until some $v_k = 0$ is reached.
 
-\paragraph{Example}
+\paragraph{Example:}
 I dissolve the partnership represented by:
 \begin{table}[h]
 \centering
-\begin{tabular}{|l|l|l|l|l|l|l|l|}
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|}
 \hline
-S    & 1  & 2  & 3 & 1,2 & 1,3 & 2,3 & 1,2,3 \\ \hline
-v(S) & 30 & 12 & 6 & 36  & 36  & 30  & 90    \\ \hline
+$S$  & 1  & 2  & 3  & 4  & 12 & 13 & 14  & 23  & 24 & 34 & 123 & 124 & 134 & 234 & 1234 \\ \hline
+$v(S)$& 24 & 48 & 24 & 72 & 96 & 0  & 120 & 144 & 0  & 0  & 0   & 0   & 168 & 0   & 240  \\ \hline
 \end{tabular}
 \end{table}
 
-I use the same notation as in the reading: on the left I indicate the chosen
-coalition (``claimant'') leading to the game on that line (this is a slight
-deviation from the reading, but I think it makes more intuitive sense), in
-the middle the value of each successive game,
-and on the right how much each partner gets from each distribution.
+I use the same notation as in the reading. In this first round I simply choose
+coalitions from smallest to largest and in numerical order.
 \begin{table}[h]
-  \scriptsize
 \centering
-\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|}
+\scriptsize
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|}
 \hline
-Claimant & $v_i(1)$ & $v_i(2)$ & $v_i(3)$ & $v_i(1,2)$ & $v_i(1,3)$ & $v_i(2,3)$ & $v_i(1,2,3)$ & 1  & 2  & 3  \\ \hline
-         & 30      & 12      & 6       & 36        & 36        & 30        & 90          &    &    &    \\ \hline
-1        & 0       & 12      & 6       & 6         & 6         & 30        & 60          & 30 & 0  & 0  \\ \hline
-2        & 0       & 0       & 6       & -6        & 6         & 18        & 48          & 0  & 12 & 0  \\ \hline
-3        & 0       & 0       & 0       & -6        & 0         & 12        & 42          & 0  & 0  & 6  \\ \hline
-2,3      & 0       & 0       & 0       & -6        & 0         & 0         & 30          & 0  & 6  & 6  \\ \hline
-1,2      & 0       & 0       & 0       & 0         & 0         & 0         & 36          & -3 & -3 & 0  \\ \hline
-1,2,3    & 0       & 0       & 0       & 0         & 0         & 0         & 0           & 12 & 12 & 12 \\ \hline
-Total    &         &         &         &           &           &           &             & 39 & 27 & 24 \\ \hline
+$S$ & \multicolumn{15}{l|}{Game}                                                              & \multicolumn{4}{l|}{Allocations} \\ \hline
+         & 1  & 2  & 3  & 4  & 12 & 13  & 14  & 23  & 24   & 34  & 123  & 124  & 134 & 234  & 1234 & 1      & 2      & 3      & 4     \\ \hline
+         & 24 & 48 & 24 & 72 & 96 & 0   & 120 & 144 & 0    & 0   & 0    & 0    & 168 & 0    & 240  & 0      & 0      & 0      & 0     \\ \hline
+1        & 0  & 48 & 24 & 72 & 72 & -24 & 96  & 144 & 0    & 0   & -24  & -24  & 144 & 0    & 216  & 24     & 0      & 0      & 0     \\ \hline
+2        & 0  & 0  & 24 & 72 & 24 & -24 & 96  & 96  & -48  & 0   & -72  & -72  & 144 & -48  & 168  & 0      & 48     & 0      & 0     \\ \hline
+3        & 0  & 0  & 0  & 72 & 24 & -48 & 96  & 72  & -48  & -24 & -96  & -72  & 120 & -72  & 144  & 0      & 0      & 24     & 0     \\ \hline
+4        & 0  & 0  & 0  & 0  & 24 & -48 & 24  & 72  & -120 & -96 & -96  & -144 & 48  & -144 & 72   & 0      & 0      & 0      & 72    \\ \hline
+12       & 0  & 0  & 0  & 0  & 0  & -48 & 24  & 72  & -120 & -96 & -120 & -168 & 48  & -144 & 48   & 12     & 12     & 0      & 0     \\ \hline
+13       & 0  & 0  & 0  & 0  & 0  & 0   & 24  & 72  & -120 & -96 & -72  & -168 & 96  & -144 & 96   & -24    & 0      & -24    & 0     \\ \hline
+14       & 0  & 0  & 0  & 0  & 0  & 0   & 0   & 72  & -120 & -96 & -72  & -192 & 72  & -144 & 72   & 12     & 0      & 0      & 12    \\ \hline
+  23
+    & 0  & 0  & 0  & 0  & 0  & 0   & 0   & 0   & -120 & -96 & -144 & -192 & 72  & -216 & 0    & 0      & 36     & 36     & 0     \\ \hline
+24       & 0  & 0  & 0  & 0  & 0  & 0   & 0   & 0   & 0    & -96 & -144 & -72  & 72  & -96  & 120  & 0      & -60    & 0      & -60   \\ \hline
+34       & 0  & 0  & 0  & 0  & 0  & 0   & 0   & 0   & 0    & 0   & -144 & -72  & 168 & 0    & 216  & 0      & 0      & -48    & -48   \\ \hline
+123      & 0  & 0  & 0  & 0  & 0  & 0   & 0   & 0   & 0    & 0   & 0    & -72  & 168 & 0    & 360  & -48    & -48    & -48    & 0     \\ \hline
+124      & 0  & 0  & 0  & 0  & 0  & 0   & 0   & 0   & 0    & 0   & 0    & 0    & 168 & 0    & 432  & -24    & -24    & 0      & -24   \\ \hline
+134      & 0  & 0  & 0  & 0  & 0  & 0   & 0   & 0   & 0    & 0   & 0    & 0    & 0   & 0    & 264  & 56     & 0      & 56     & 56    \\ \hline
+1234     & 0  & 0  & 0  & 0  & 0  & 0   & 0   & 0   & 0    & 0   & 0    & 0    & 0   & 0    & 0    & 66     & 66     & 66     & 66    \\ \hline
+\multicolumn{16}{|l|}{Total}                                                                       & 74     & 30     & 62     & 74    \\ \hline
 \end{tabular}
 \end{table}
-\pagebreak
 
-And with a different order of coalitions chosen:
+Thus the vector of allocations is $(74, 30, 62, 74)$.
+And with a different order of coalitions chosen we get the same result:
+
 \begin{table}[h]
   \scriptsize
 \centering
-\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|}
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|}
 \hline
-Claimant & v\_i(1) & v\_i(2) & v\_i(3) & v\_i(1,2) & v\_i(1,3) & v\_i(2,3) & v\_i(1,2,3) & 1  & 2  & 3  \\ \hline
-         & 30      & 12      & 6       & 36        & 36        & 30        & 90          &    &    &    \\ \hline
-2        & 30      & 0       & 6       & 24        & 36        & 18        & 78          & 0  & 12 & 0  \\ \hline
-3        & 30      & 0       & 0       & 24        & 30        & 18        & 72          & 0  & 0  & 6  \\ \hline
-1        & 0       & 0       & 0       & 6         & 0         & 12        & 42          & 30 & 0  & 0  \\ \hline
-1,2      & 0       & 0       & 0       & 0         & 0         & 12        & 48          & -3 & -3 & 0  \\ \hline
-2,3      & 0       & 0       & 0       & 0         & 0         & 0         & 36          & 0  & 6  & 6  \\ \hline
-1,2,3    & 0       & 0       & 0       & 0         & 0         & 0         & 0           & 12 & 12 & 12 \\ \hline
-Total    &         &         &         &           &           &           &             & 39 & 27 & 24 \\ \hline
+$S$     & \multicolumn{15}{l|}{Game}                                                              & \multicolumn{4}{l|}{Allocations} \\ \hline
+     & 1  & 2  & 3  & 4  & 12 & 13  & 14  & 23  & 24   & 34  & 123  & 124  & 134 & 234  & 1234 & 1      & 2      & 3      & 4     \\ \hline
+     & 24 & 48 & 24 & 72 & 96 & 0   & 120 & 144 & 0    & 0   & 0    & 0    & 168 & 0    & 240  & 0      & 0      & 0      & 0     \\ \hline
+3    & 24 & 48 & 0  & 72 & 96 & -24 & 120 & 120 & 0    & -24 & -24  & 0    & 144 & -24  & 216  & 0      & 0      & 24     & 0     \\ \hline
+2    & 24 & 0  & 0  & 72 & 48 & -24 & 120 & 72  & -48  & -24 & -72  & -48  & 144 & -72  & 168  & 0      & 48     & 0      & 0     \\ \hline
+4    & 24 & 0  & 0  & 0  & 48 & -24 & 48  & 72  & -120 & -96 & -72  & -120 & 72  & -144 & 96   & 0      & 0      & 0      & 72    \\ \hline
+1    & 0  & 0  & 0  & 0  & 24 & -48 & 24  & 72  & -120 & -96 & -96  & -144 & 48  & -144 & 72   & 24     & 0      & 0      & 0     \\ \hline
+23   & 0  & 0  & 0  & 0  & 24 & -48 & 24  & 0   & -120 & -96 & -168 & -144 & 48  & -216 & 0    & 0      & 36     & 36     & 0     \\ \hline
+13   & 0  & 0  & 0  & 0  & 24 & 0   & 24  & 0   & -120 & -96 & -120 & -24  & 96  & -216 & 48   & -24    & 0      & -24    & 0     \\ \hline
+24   & 0  & 0  & 0  & 0  & 24 & 0   & 24  & 0   & 0    & -96 & -120 & -24  & 96  & -96  & 168  & 0      & -60    & 0      & -60   \\ \hline
+14   & 0  & 0  & 0  & 0  & 24 & 0   & 0   & 0   & 0    & -96 & -144 & -48  & 72  & -96  & 144  & 12     & 0      & 0      & 12    \\ \hline
+12   & 0  & 0  & 0  & 0  & 0  & 0   & 0   & 0   & 0    & -96 & -144 & -72  & 72  & -96  & 120  & 12     & 12     & 0      & 0     \\ \hline
+34   & 0  & 0  & 0  & 0  & 0  & 0   & 0   & 0   & 0    & 0   & -144 & -72  & 168 & 0    & 216  & 0      & 0      & -48    & -48   \\ \hline
+124  & 0  & 0  & 0  & 0  & 0  & 0   & 0   & 0   & 0    & 0   & -144 & 0    & 168 & 0    & 288  & -24    & -24    & 0      & -24   \\ \hline
+134  & 0  & 0  & 0  & 0  & 0  & 0   & 0   & 0   & 0    & 0   & -144 & 0    & 0   & 0    & 120  & 56     & 0      & 56     & 56    \\ \hline
+123  & 0  & 0  & 0  & 0  & 0  & 0   & 0   & 0   & 0    & 0   & 0    & 0    & 0   & 0    & 264  & -48    & -48    & -48    & 0     \\ \hline
+1234 & 0  & 0  & 0  & 0  & 0  & 0   & 0   & 0   & 0    & 0   & 0    & 0    & 0   & 0    & 0    & 66     & 66     & 66     & 66    \\ \hline
+\multicolumn{16}{|l|}{Total}                                                                   & 74     & 30     & 62     & 74    \\ \hline
 \end{tabular}
 \end{table}
 
@@ -154,33 +172,39 @@ In fact, I show in this section that the outcome of the
 procedure is the same regardless of which coalition is chosen at any stage,
 and that the outcome is always the Shapley value.
 
-\paragraph{Example}
+\paragraph{Example:}
 
 To first demonstrate this correspondence, I shall calculate the Shapley value
-for each partner in the example given above.
+for each partner in the example given above. Instead of working with the formula
+I simply generate all the permutations of $[1,2,3,4]$ and calculate $v(S) -
+v(S\cup i)$, add it to the $i$th component of my vector, then divide by 4! = 24. 
+I wrote a python script to do this:
 
-For partner 1:
-\begin{align*}
-  \phi_1(v)
-  & = \sum_{S\subseteq N\setminus \{1\}}\frac{|S|!(3-|S|-1)!}{3!}(v(S\cup \{1\})-
-    v(S))\\
-  & = \frac{2\cdot 30}{6} + \frac{36-12}{6} + \frac{36-6}{6} +
-    \frac{2(90-30)}{6} = 39.
-\end{align*}
+\begin{verbatim}
+import numpy as np
+import itertools
 
-For partner 2:
-\begin{align*}
-  \phi_1(v)
-  & = \sum_{S\subseteq N\setminus \{2\}}\frac{|S|!(3-|S|-1)!}{3!}(v(S\cup \{2\})-
-    v(S))\\
-  & = \frac{2\cdot 12}{6} + \frac{36-30}{6} + \frac{30-6}{6} + \frac{2(90-36)}
-    {6} = 27.
-\end{align*}
+v = {():0, (1,):24, (2,):48, (3,):24, (4,):72, (1,2):96, (1,3):0, (1,4):120,
+     (2,3):144, (2,4):0, (3,4):0, (1,2,3):0, (1,2,4):0, (1,3,4):168,
+     (2,3,4):0, (1,2,3,4):240}
+permutations = list(itertools.permutations([1,2,3,4]))
+shapley = [0,0,0,0]
 
-And finally because $\sum_i\phi_i(v) = v(N)$, $\phi_3(v) = 24$, which is what we
-got from the procedure above.
+for permutation in permutations:
+    S = []
+    for i in permutation:
+        S_old = S[:]
+        S += [i]
+        S.sort()
+        shapley[i-1] += v[tuple(S)] - v[tuple(S_old)]
 
-\paragraph{Proof}
+shapley = np.array(shapley)/24
+print(shapley)
+\end{verbatim}
+The result is \texttt{[74. 30. 62. 74.]}, which is exactly what I got from both
+uses of the procedure.
+
+\paragraph{Proof:}
 I now show that the procedure always gives each partner their Shapley value.
 Let $u_S\in \mathbb{R}^{P(N)}$ be a vector/game with components $(u_S)_T = 1$ if
 $S \subseteq T$ and 0 otherwise. Note that at each step $i$, we generate our
